@@ -58,14 +58,15 @@ const ToDoList = () => {
             >Add Task</button>
             </div>
 		<ul>
-            {tasks.map(task => (
+            {tasks.length ? tasks.map(task => (
                 <ToDoItem 
                 key={task.id}
                 task={task}
                 deleteTask={deleteTask}
                 toggleCompleted={toggleCompleted}
                 />
-            ))}
+            )): <h6>Add to do's</h6>
+        }
             </ul>
 			
 		
