@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import ToDoItem from './todoitem';
 
 const ToDoList = () => {
@@ -11,15 +11,28 @@ const ToDoList = () => {
     ]);
 
     const [text, setText] = useState("");
-        function addTask(text){
-                const newTask={
-                    id:Date.now(),
-                    text ,
-                    completed: false,
-                };
-                setTasks([...tasks, newTask]);
-                setText("");
-
+        function addTask(newTask){
+                let newTaskArray = [...tasks,{label: newTask, done: false}];
+                fetch('https://playground.4geeks.com/apis/fake/todos/user/Keziab', {
+                    method: "PUT",
+                    body: JSON.stringify(newTaskArray),
+                    headers: {
+                      "Content-Type": "application/json"
+                    }
+                  })
+                  .then( response => {
+                    if(!response.ok) throw Error(response.statusText);
+                return response.json();
+                })
+                
+                  .then(data => {
+                      // Here is where your code should start after the fetch finishes
+                      console.log(data); // This will print on the console the exact object received from the server
+                  })
+                  .catch(error => {
+                      // Error handling
+                      console.log(error);
+                  });
         }
         function handleKeyPress(item,e){
             if(e.key === "Enter"){
@@ -28,8 +41,42 @@ const ToDoList = () => {
         }
 
         function deleteTask(id){
-            setTasks(tasks.filter(task => task.id !== id));
+            const newList = tasks.filter(task => task.id !== id);
+            fetch('https://playground.4geeks.com/apis/fake/todos/user/Keziab', {
+      method: "PUT",
+      body: JSON.stringify(newList),
+      headers: {
+        "Content-Type": "application/json"
+      }
+    })
+    .then(resp => {
+        console.log(resp.ok); // Will be true if the response is successful
+        console.log(resp.status); // The status code=200 or code=400 etc.
+        console.log(resp.text()); // Will try to return the exact result as a string
+        return resp.json(); // (returns promise) Will try to parse the result as JSON and return a promise that you can .then for results
+    })
+    .then(data => {
+        // Here is where your code should start after the fetch finishes
+        console.log(data); // This will print on the console the exact object received from the server
+    })
+    .catch(error => {
+        // Error handling
+        console.log(error);
+    });
         }
+
+        useEffect(()=>{
+            fetch('https://playground.4geeks.com/apis/fake/todos/user/Keziab')
+            .then(response=>response.clone().json())
+            .then(data=>{
+                console.log(data)
+                setTasks(data)
+            })
+            .catch(
+                error=>console.error("this is an error",error)
+            )
+    },[])
+  
 
         function toggleCompleted(id){
             setTasks(tasks.map(task => {
