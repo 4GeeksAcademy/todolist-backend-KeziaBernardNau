@@ -1,4 +1,4 @@
-
+@import url('https://fonts.googleapis.com/css?family=Dancing+Script');
 /* 
 
     You can write your own styles here...
@@ -12,7 +12,16 @@
 */
 ul li {
     list-style-type: none;
-    margin: 10px 0 10px 70px;
+    margin:  0, 0, 0, 0;
+    padding: 0px;
+}
+
+ul {
+    padding: 2px;
+    border: 1px solid darkgray;
+    border-radius: 3%;
+    height: 12%;
+    margin-top: 2px;
 }
 
 .right {
@@ -21,24 +30,93 @@ ul li {
 
 .left {
     float: left;
-    margin-right: 5px;
+    margin-right: 1px;
 }
 
 .container {
     width: 50%;
     margin: 10px auto;
+    border: solid;
+    border-radius: 25%;
+    margin-right:275px;
+    padding-right: 85px;
+    padding-top: 0;
+    padding-bottom: 10px;
+    z-index: 3;
 }
 
+.box {
+    padding-left: 50px;
+}
+
+
 .inputGroup {
-    margin-left: 140px;
+    margin-left: 0px;
+}
+
+input {
+    padding-left: 10px;
 }
 
 h1 {
     text-align: center;
-    margin-left: 55px;
+    /* margin-left: 55px; */
+    margin-top: 0;
 }
 
 li {
-    border-bottom: 1px solid black;
-    padding-bottom: 20px;
+    padding-bottom: 70px;
+    padding-right: 60px;
 }
+
+body {
+    background-color: rgba(0,0,0,0.1);
+  }
+  
+  /* styling paper */
+  .paper {
+    width: 500px;
+    height: 600px;
+    position: relative;
+    margin: 20px auto;
+    padding-top: 60px;
+    padding-left: 70px;
+    padding-bottom: 150px;
+    background-color: white;
+    box-shadow: 0px 0px 5px 0px #888;
+    z-index: 1;
+  }
+  
+  /* styling red vertical line */
+  .paper::before {
+    content: '';
+    width: 2px;
+    height: 70%;
+    position: relative;
+    top: 0;
+    left: 40px;
+    background-color: rgba(255,0,0,0.6);
+  }
+  
+  /* styling blue horizontal lines */
+  .pattern {
+    height: 90%;
+    padding-bottom: 5px;
+    padding-top: 10px;
+    background-image: repeating-linear-gradient(white 0px, white 24px, teal 25px);
+    z-index: 1;
+  }
+  
+  styling text content 
+    .content {
+    padding-bottom: 200px;
+    padding-left: 10px;
+    padding-right: 16px;
+    line-height: 25px;
+    z-index: 1;
+  }
+
+btn-danger {
+    width: 90%;
+    height: 50%;
+ }

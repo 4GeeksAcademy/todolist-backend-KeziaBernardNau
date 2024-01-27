@@ -12,9 +12,9 @@ const ToDoItem = ({task, deleteTask, toggleCompleted}) => {
 	}
 	return (
 		<li key={task.index}>
-			<input type="checkbox" checked={task.completed} onChange={handleChange} />
+			<input className="box" type="checkbox" checked={task.completed} onChange={handleChange} />
 			<div className="taskList left">{task.label}</div>
-			<div className="right">
+			<div className="right button">
 				<button className="btn btn-danger" onClick={() => deleteTask(task.id)}>delete</button>
 		</div>
 		
